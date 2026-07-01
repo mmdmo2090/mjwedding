@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum RsvpStatus {
+  PENDING
+  ATTENDING
+  DECLINED
+}
+
+enum MealChoice {
+  CHICKEN
+  FISH
+  VEGETARIAN
+  KIDS
+}
+
+model Household {
+  id         String   @id @default(cuid())
+  name       String
+  inviteCode String   @unique
+  maxGuests  Int
+  notes      String?
+  songRequest String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  guests Guest[]
+}
+
+model Guest {
+  id                  String     @id @default(cuid())
+  householdId         String
+  household           Household  @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  firstName           String
+  lastName            String
+  isChild             Boolean    @default(false)
+  rsvpStatus          RsvpStatus @default(PENDING)
+  mealChoice          MealChoice?
+  dietaryRestrictions String?
+  respondedAt         DateTime?
+}
