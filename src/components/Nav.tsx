@@ -6,6 +6,7 @@ const links = [
   { href: "/details", label: "Details" },
   { href: "/gallery", label: "Gallery" },
   { href: "/registry", label: "Registry" },
+  { href: "/rsvp", label: "RSVP" },
 ];
 
 export default function Nav() {
