@@ -9,6 +9,7 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: process.env["DATABASE_URL"],
+    // Neon requires a direct (non-pooled) connection for schema migrations.
+    url: process.env["MJWEDDING_POSTGRES_URL_NON_POOLING"],
   },
 });
