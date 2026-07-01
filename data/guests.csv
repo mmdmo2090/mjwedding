@@ -1,0 +1,4 @@
+household,maxGuests,firstName,lastName,isChild
+Smith Family,4,John,Smith,false
+Smith Family,4,Jane,Smith,false
+Doe Family,2,Alex,Doe,false
